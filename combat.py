@@ -43,6 +43,7 @@ TEXT_BG = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'UI', 
 
 # clock
 clock = pygame.time.Clock()
+frame_count = 0
 
 # text and color
 TEXT_FONT = pygame.font.SysFont('comicsans', 18)
@@ -104,182 +105,34 @@ keys_locked = False
 
 # animations lists
 LAVENDER_ATTACK_LIST = [pygame.image.load(os.path.join('Assets', 'Lavender', 'attack1.png')),
-                        pygame.image.load(os.path.join('Assets', 'Lavender', 'attack1.png')),
-                        pygame.image.load(os.path.join('Assets', 'Lavender', 'attack1.png')),
-                        pygame.image.load(os.path.join('Assets', 'Lavender', 'attack2.png')),
-                        pygame.image.load(os.path.join('Assets', 'Lavender', 'attack2.png')),
                         pygame.image.load(os.path.join('Assets', 'Lavender', 'attack2.png')),
                         pygame.image.load(os.path.join('Assets', 'Lavender', 'attack3.png')),
-                        pygame.image.load(os.path.join('Assets', 'Lavender', 'attack3.png')),
-                        pygame.image.load(os.path.join('Assets', 'Lavender', 'attack3.png')),
                         pygame.image.load(os.path.join('Assets', 'Lavender', 'attack4.png')),
-                        pygame.image.load(os.path.join('Assets', 'Lavender', 'attack4.png')),
-                        pygame.image.load(os.path.join('Assets', 'Lavender', 'attack4.png')),
-                        pygame.image.load(os.path.join('Assets', 'Lavender', 'attack5.png')),
-                        pygame.image.load(os.path.join('Assets', 'Lavender', 'attack5.png')),
                         pygame.image.load(os.path.join('Assets', 'Lavender', 'attack5.png'))]
 LAVENDER_SPELL_LIST = [pygame.image.load(os.path.join('Assets', 'Lavender', 'spell1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell2.png')),
                        pygame.image.load(os.path.join('Assets', 'Lavender', 'spell2.png')),
                        pygame.image.load(os.path.join('Assets', 'Lavender', 'spell3.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell3.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell3.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell3.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell3.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell3.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell3.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell3.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell4.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell4.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell4.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell4.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell4.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell4.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'spell4.png')),
                        pygame.image.load(os.path.join('Assets', 'Lavender', 'spell4.png')),]
 LAVENDER_PARRY_LIST = [pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect1.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
-                       pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png')),
                        pygame.image.load(os.path.join('Assets', 'Lavender', 'protect2.png'))]
 LAVENDER_MAGIC_MISSILE_LIST = [pygame.image.load(os.path.join('Assets', 'Lavender', 'magic1.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic1.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic1.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic1.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic1.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic2.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic2.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic2.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic2.png')),
                                pygame.image.load(os.path.join('Assets', 'Lavender', 'magic2.png')),
                                pygame.image.load(os.path.join('Assets', 'Lavender', 'magic3.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic3.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic3.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic3.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic3.png')),
                                pygame.image.load(os.path.join('Assets', 'Lavender', 'magic4.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic4.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic4.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic4.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic4.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic4.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic5.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic5.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic5.png')),
-                               pygame.image.load(os.path.join('Assets', 'Lavender', 'magic5.png')),
                                pygame.image.load(os.path.join('Assets', 'Lavender', 'magic5.png')),
                                pygame.image.load(os.path.join('Assets', 'Lavender', 'magic6.png'))]
 LAVENDER_DEAD_LIST = [pygame.image.load(os.path.join('Assets', 'Lavender', 'dead1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead2.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'dead2.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'dead3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead4.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'dead4.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'dead5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead6.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead6.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead6.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead6.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'dead6.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'dead7.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead7.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead7.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead7.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead7.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead8.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead8.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead8.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'dead8.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'dead8.png'))]
 LAVENDER_IDLE_LIST = [pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),]
 LAVENDER_HURT_LIST = [pygame.image.load(os.path.join('Assets', 'Lavender', 'hurt.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'hurt.png')),
@@ -287,304 +140,62 @@ LAVENDER_HURT_LIST = [pygame.image.load(os.path.join('Assets', 'Lavender', 'hurt
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'hurt.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'hurt.png'))]
 SBLADE_ATTACK_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack2.png')),
                       pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack2.png')),
                       pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack4.png')),
                       pygame.image.load(os.path.join('Assets', 'Spellblade', 'attack4.png'))]
 SBLADE_SPELL_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball1.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball1.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball1.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball1.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball1.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball2.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball2.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball2.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball2.png')),
                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball2.png')),
                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball3.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball3.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball3.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball3.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball3.png')),
                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball4.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball4.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball4.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball4.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball4.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball4.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball5.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball5.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball5.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball5.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball5.png')),
                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball5.png')),
                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball6.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball6.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball6.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball6.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball6.png')),
                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball7.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball7.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball7.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball7.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball7.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball8.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball8.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball8.png')),
-                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball8.png')),
                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'fireball8.png'))]
 SBLADE_CHARGED_ATTACK1_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack1.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack1.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack1.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack1.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack1.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack2.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack2.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack2.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack2.png')),
                                pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack2.png'))]
 SBLADE_CHARGED_ATTACK2_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack3.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack3.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack3.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack3.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack3.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack4.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack4.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack4.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack4.png')),
-                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack4.png')),]
+                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'charged_attack4.png'))]
 SBLADE_CHARGED_SPELL1_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet1.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet1.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet1.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet1.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet1.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet2.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet2.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet2.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet2.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet2.png'))]
 SBLADE_CHARGED_SPELL2_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet3.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet3.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet3.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet3.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet3.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet4.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet4.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet4.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet4.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet4.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet5.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet5.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet5.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet5.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet5.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet6.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet6.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet6.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet6.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet6.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet7.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet7.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet7.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet7.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet7.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet8.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet8.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet8.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet8.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet8.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet9.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet9.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet9.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet9.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet9.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet10.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet10.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet10.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet10.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet10.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet11.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet11.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet11.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet11.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet11.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet12.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet12.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet12.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet12.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet12.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet13.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet13.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet13.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet13.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet13.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet14.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet14.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet14.png')),
-                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet14.png')),
                               pygame.image.load(os.path.join('Assets', 'Spellblade', 'flamejet14.png'))]
 SBLADE_MAGIC_MISSLE1_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic1.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic1.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic1.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic1.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic1.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic2.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic2.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic2.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic2.png')),
                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic2.png')),
                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic3.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic3.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic3.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic3.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic3.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic4.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic4.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic4.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic4.png')),
                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic4.png')),
                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic5.png'))]
 SBLADE_MAGIC_MISSLE2_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic6.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic6.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic6.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic6.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic6.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic7.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic7.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic7.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic7.png')),
                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic7.png')),
                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic8.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic8.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic8.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic8.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic8.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic9.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic9.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic9.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic9.png')),
                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic9.png')),
                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic10.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic10.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic10.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic10.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic10.png')),
                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic11.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic11.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic11.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic11.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic11.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic12.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic12.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic12.png')),
-                             pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic12.png')),
                              pygame.image.load(os.path.join('Assets', 'Spellblade', 'magic12.png'))]
 SBLADE_IDLE_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle2.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle2.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle4.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle4.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle5.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle7.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle7.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle7.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle7.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle7.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle7.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'idle7.png'))]
 SBLADE_HURT_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt1.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt3.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'hurt3.png'))]
 SBLADE_DEAD_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead2.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead2.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead4.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead4.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead6.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'dead6.png'))]
 SBLADE_PARRY_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'parry.png')),
                      pygame.image.load(os.path.join('Assets', 'Spellblade', 'parry.png')),
@@ -626,12 +237,14 @@ def lavender_idle_animations():
             lavender.is_dead = True
         else:
             WIN.blit(LAVENDER_DEAD_LIST[lavender.idle_index], (lav_rect.x, lav_rect.y))
-            lavender.idle_index += 1
+            if frame_count % 8 == 0:
+                lavender.idle_index += 1
     elif lavender.is_parrying or lavender.is_interrupting:
         if lavender.idle_index >= len(LAVENDER_PARRY_LIST):
             lavender.idle_index = 0
         WIN.blit(LAVENDER_PARRY_LIST[lavender.idle_index], (lav_rect.x, lav_rect.y))
-        lavender.idle_index += 1
+        if frame_count % 20 == 0:
+            lavender.idle_index += 1
     elif lavender.is_taking_damage:
         if lavender.idle_index >= len(LAVENDER_HURT_LIST):
             lavender.idle_index = 0
@@ -642,7 +255,8 @@ def lavender_idle_animations():
         if lavender.idle_index >= len(LAVENDER_IDLE_LIST):
             lavender.idle_index = 0
         WIN.blit(LAVENDER_IDLE_LIST[lavender.idle_index], (lav_rect.x, lav_rect.y))
-        lavender.idle_index += 1
+        if frame_count % 8 == 0:
+            lavender.idle_index += 1
 
 
 def sblade_idle_animations():
@@ -653,23 +267,27 @@ def sblade_idle_animations():
             sblade.is_dead = True
         else:
             WIN.blit(SBLADE_DEAD_LIST[sblade.idle_index], (sblade_rect.x, sblade_rect.y))
-            sblade.idle_index += 1
+            if frame_count % 6 == 0:
+                sblade.idle_index += 1
     elif sblade.is_preparing_attack and not sblade.playing_attack_animation and sblade.is_idle:
         if sblade.idle_index >= len(SBLADE_CHARGED_ATTACK1_LIST):
             sblade.idle_index = 0
         WIN.blit(SBLADE_CHARGED_ATTACK1_LIST[sblade.idle_index], (sblade_rect.x, sblade_rect.y))
-        sblade.idle_index += 1
+        if frame_count % 25 == 0:
+            sblade.idle_index += 1
     elif sblade.is_preparing_spell and not sblade.playing_attack_animation and sblade.is_idle:
         if sblade.idle_index >= len(SBLADE_CHARGED_SPELL1_LIST):
             sblade.idle_index = 0
         WIN.blit(SBLADE_CHARGED_SPELL1_LIST[sblade.idle_index], (sblade_rect.x, sblade_rect.y))
-        sblade.idle_index += 1
+        if frame_count % 25 == 0:
+            sblade.idle_index += 1
     elif sblade.is_taking_damage:
         if sblade.idle_index >= len(SBLADE_HURT_LIST):
             sblade.idle_index = 0
             sblade.is_taking_damage = False
         WIN.blit(SBLADE_HURT_LIST[sblade.idle_index], (sblade_rect.x, sblade_rect.y))
-        sblade.idle_index += 1
+        if frame_count % 6 == 0:
+            sblade.idle_index += 1
     elif sblade.is_interrupting:
         if sblade.idle_index >= len(SBLADE_INTERRUPT_LIST):
             sblade.idle_index = 0
@@ -683,7 +301,8 @@ def sblade_idle_animations():
         if sblade.idle_index >= len(SBLADE_IDLE_LIST):
             sblade.idle_index = 0
         WIN.blit(SBLADE_IDLE_LIST[sblade.idle_index], (sblade_rect.x, sblade_rect.y))
-        sblade.idle_index += 1
+        if frame_count % 8 == 0:
+            sblade.idle_index += 1
 
 
 def arrow_movement(keys_pressed, arrow):
@@ -731,7 +350,8 @@ def attack_animation(actor, target, animation: list):
         WIN.blit(animation[actor.animation_index], (lav_rect.x, lav_rect.y))
     elif actor is sblade:
         WIN.blit(animation[actor.animation_index], (sblade_rect.x, sblade_rect.y))
-    actor.animation_index += 1
+    if frame_count % 5 == 0:
+        actor.animation_index += 1
 
 
 def spell_cast_animation(actor, animation: list):
@@ -750,7 +370,8 @@ def spell_cast_animation(actor, animation: list):
         WIN.blit(animation[actor.animation_index], (lav_rect.x, lav_rect.y))
     elif actor is sblade:
         WIN.blit(animation[actor.animation_index], (sblade_rect.x, sblade_rect.y))
-    actor.animation_index += 1
+    if frame_count % 6 == 0:
+        actor.animation_index += 1
 
 
 def attack(actor, target, animation: list):
@@ -831,7 +452,8 @@ def spell(actor, target):
                     WIN.blit(SBLADE_MAGIC_MISSLE1_LIST[spell_anim_index-1], (sblade_spell_rect.x, sblade_spell_rect.y))
                 else:
                     WIN.blit(SBLADE_MAGIC_MISSLE1_LIST[spell_anim_index], (sblade_spell_rect.x, sblade_spell_rect.y))
-                    spell_anim_index += 1
+                    if frame_count % 5 == 0:
+                        spell_anim_index += 1
                 if sblade_spell_rect.x > 350:
                     sblade_spell_rect.x -= 10
         elif target.is_interrupting:
@@ -913,7 +535,12 @@ def channeled_attack_animation(actor, target, animation: list):
         actor.is_idle = True
 
     WIN.blit(animation[actor.animation_index], (sblade_rect.x, sblade_rect.y))
-    actor.animation_index += 1
+    if animation is SBLADE_CHARGED_ATTACK2_LIST:
+        if frame_count % 25 == 0:
+            actor.animation_index += 1
+    elif animation is SBLADE_CHARGED_SPELL2_LIST:
+        if frame_count % 7 == 0:
+            actor.animation_index += 1
 
 
 def channeled_attack(actor, target, animation: list):
@@ -956,6 +583,19 @@ def channeled_attack(actor, target, animation: list):
             player_turn = not player_turn
 
 
+def fireball_explosion():
+    global spell_anim_index
+    global spell_explosion_playing
+    if spell_explosion_playing:
+        if spell_anim_index >= len(SBLADE_MAGIC_MISSLE2_LIST):
+            spell_anim_index = 0
+            spell_explosion_playing = False
+        else:
+            WIN.blit(SBLADE_MAGIC_MISSLE2_LIST[spell_anim_index], (350, sblade_spell_rect.y))
+            if frame_count % 8 == 0:
+                spell_anim_index += 1
+
+
 def combat():
     global spell_explosion_playing
     global spell_anim_index
@@ -965,6 +605,7 @@ def combat():
     global virtual_keypress
     global keys_locked
     global action
+    global frame_count
 
     WIN.blit(BG, (0, 0))
     WIN.blit(TEXT_BG, (0, HEIGHT*0.8))
@@ -982,18 +623,9 @@ def combat():
     WIN.blit(text_parry, (10+TAB_IMAGE.get_width()//2-text_parry.get_width()//2, HEIGHT*0.8-TAB_IMAGE.get_height()*1.5-text_parry.get_height()//2))
     WIN.blit(text_mind, (10+TAB_IMAGE.get_width()//2-text_mind.get_width()//2, HEIGHT*0.8-TAB_IMAGE.get_height()//2-text_mind.get_height()//2))
     healthbars()
-
     lavender_idle_animations()
     sblade_idle_animations()
-
-    if spell_explosion_playing:
-        if spell_anim_index >= len(SBLADE_MAGIC_MISSLE2_LIST):
-            spell_anim_index = 0
-            spell_explosion_playing = False
-        else:
-            WIN.blit(SBLADE_MAGIC_MISSLE2_LIST[spell_anim_index], (350, sblade_spell_rect.y))
-            spell_anim_index += 1
-
+    fireball_explosion()
     status_messages()
 
     keys_pressed = pygame.key.get_pressed()
@@ -1009,7 +641,7 @@ def combat():
                 sblade.is_preparing_attack = False
                 sblade.is_preparing_spell = False
                 sblade.is_idle = True
-                third_status_message = f"{sblade.name} looks scared and takes a defensive posture."
+                third_status_message = f"{sblade.name} looks scared and is taking a defensive posture."
                 sblade.is_parrying = True
                 player_turn = not player_turn
             elif action == 2:
@@ -1018,7 +650,7 @@ def combat():
                 sblade.is_preparing_attack = False
                 sblade.is_preparing_spell = False
                 sblade.is_idle = True
-                third_status_message = f"{sblade.name} looks scared and prepares a counterspell"
+                third_status_message = f"{sblade.name} looks scared and is preparing a counterspell"
                 sblade.is_interrupting = True
                 player_turn = not player_turn
         else:
@@ -1122,3 +754,7 @@ def combat():
         main.blit_text(keys_pressed, text.end(), (0, 0))
         if keys_pressed[pygame.K_SPACE]:
             quit()
+
+    if frame_count >= 10000:
+        frame_count = 0
+    frame_count += 1

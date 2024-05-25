@@ -55,78 +55,17 @@ HERO_WIDTH = 128
 HERO_HEIGHT = 128
 HERO = pygame.Rect(100, HEIGHT // 4 * 3 - HERO_HEIGHT, HERO_WIDTH, HERO_HEIGHT)
 HERO_IDLE_LIST = [pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
                   pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
                   pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
                   pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle4.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),
-                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png'))]
+                  pygame.image.load(os.path.join('Assets', 'Lavender', 'idle5.png')),]
 SBLADE = pygame.Rect(1180, HEIGHT//4*3 - HERO_HEIGHT, HERO_WIDTH, HERO_HEIGHT)
 SBLADE_IDLE_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle1.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle2.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle2.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle2.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle3.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle4.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle4.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle4.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle5.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle5.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle6.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle7.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle7.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle7.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle7.png')),
-                    pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle7.png')),
                     pygame.image.load(os.path.join('Assets', 'Spellblade', 'spectre_idle7.png'))]
 
 # arrows and tabs
@@ -138,7 +77,7 @@ arrow_start_pos_second_puzzle = 304, 58
 arrow_start_pos_third_puzzle = 358, 440
 TAB_IMAGE = pygame.image.load(os.path.join('Assets', 'UI', 'tab.png'))
 
-# fire animations lists
+# fire animations lists and frame counter
 FIRE1_IDLE_LIST = [pygame.image.load(os.path.join('Assets', 'flame1', '00.png')),
                    pygame.image.load(os.path.join('Assets', 'flame1', '01.png')),
                    pygame.image.load(os.path.join('Assets', 'flame1', '02.png')),
@@ -212,6 +151,7 @@ FIRE2_IDLE_LIST = [pygame.image.load(os.path.join('Assets', 'flame2', '00.png'))
                    pygame.image.load(os.path.join('Assets', 'flame2', '37.png')),
                    pygame.image.load(os.path.join('Assets', 'flame2', '38.png')),
                    pygame.image.load(os.path.join('Assets', 'flame2', '39.png'))]
+frame_count = 0
 
 # sounds
 arrow_movement_sound = pygame.mixer.Sound(os.path.join('Assets', 'Sound', 'hover.wav'))
@@ -225,17 +165,17 @@ def blit_interact():
     WIN.blit(word, (WIDTH // 2 - word.get_width() // 2, HEIGHT * 0.9))
 
 
-def handle_idle_hero(hero, idle_list):
+def handle_idle_hero(hero):
     global idle_index_hero
     global facing_right
     x = hero.left
     y = hero.top
 
-    hero_idle_list = idle_list
-    hero_idle = hero_idle_list[idle_index_hero]
+    hero_idle = HERO_IDLE_LIST[idle_index_hero]
 
-    idle_index_hero += 1
-    if idle_index_hero >= len(hero_idle_list):
+    if frame_count % 8 == 0:
+        idle_index_hero += 1
+    if idle_index_hero >= len(HERO_IDLE_LIST):
         idle_index_hero = 0
     if facing_right:
         WIN.blit(hero_idle, (x, y))
@@ -243,16 +183,16 @@ def handle_idle_hero(hero, idle_list):
         WIN.blit(pygame.transform.flip(hero_idle, True, False), (x, y))
 
 
-def handle_idle_sblade(hero, idle_list):
+def handle_idle_sblade(sblade):
     global idle_index_sblade
-    x = hero.left
-    y = hero.top
+    x = sblade.left
+    y = sblade.top
 
-    hero_idle_list = idle_list
-    hero_idle = pygame.transform.flip(hero_idle_list[idle_index_sblade], True, False)
+    hero_idle = pygame.transform.flip(SBLADE_IDLE_LIST[idle_index_sblade], True, False)
 
-    idle_index_sblade += 1
-    if idle_index_sblade >= len(hero_idle_list):
+    if frame_count % 8 == 0:
+        idle_index_sblade += 1
+    if idle_index_sblade >= len(SBLADE_IDLE_LIST):
         idle_index_sblade = 0
     WIN.blit(hero_idle, (x, y))
 
@@ -271,15 +211,16 @@ def handle_idle_fire():
 
     if idle_index_fire1 == 0:
         fire_sound.play()
-    idle_index_fire1 += 1
-    idle_index_fire2 += 1
+    for y in y_list:
+        WIN.blit(fire1, (0-80, y))
+        WIN.blit(fire2, (WIDTH-fire2.get_width()+80, y))
+    if frame_count % 2 == 0:
+        idle_index_fire1 += 1
+        idle_index_fire2 += 1
     if idle_index_fire1 >= len(list1):
         idle_index_fire1 = 0
     if idle_index_fire2 >= len(list1):
         idle_index_fire2 = 0
-    for y in y_list:
-        WIN.blit(fire1, (0-80, y))
-        WIN.blit(fire2, (WIDTH-fire2.get_width()+80, y))
 
 
 def handle_movement(keys_pressed, hero):
@@ -290,69 +231,41 @@ def handle_movement(keys_pressed, hero):
     walk_speed = 15
 
     hero_walk_list = [pygame.image.load(os.path.join('Assets', 'Lavender', 'walk1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk1.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk2.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk2.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'walk2.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'walk3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk3.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk4.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk4.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'walk4.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'walk5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk5.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk6.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk6.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk6.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk6.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'walk6.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'walk7.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk7.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk7.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk7.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk7.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk8.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk8.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk8.png')),
-                      pygame.image.load(os.path.join('Assets', 'Lavender', 'walk8.png')),
                       pygame.image.load(os.path.join('Assets', 'Lavender', 'walk8.png'))]
     hero_walk = hero_walk_list[walk_index]
     if keys_pressed[pygame.K_a] and hero.x > 0:
         hero.x -= walk_speed
-        walk_index += 1
+        if frame_count % 10 == 0:
+            walk_index += 1
         if walk_index >= len(hero_walk_list):
             walk_index = 0
         facing_right = False
 
     if keys_pressed[pygame.K_d] and hero.x < WIDTH - hero.width:
         hero.x += walk_speed
-        walk_index += 1
+        if frame_count % 10 == 0:
+            walk_index += 1
         if walk_index >= len(hero_walk_list):
             walk_index = 0
         facing_right = True
 
     if keys_pressed[pygame.K_w] and hero.y > HEIGHT//3:
         hero.y -= walk_speed
-        walk_index += 1
+        if frame_count % 10 == 0:
+            walk_index += 1
         if walk_index >= len(hero_walk_list):
             walk_index = 0
 
     if keys_pressed[pygame.K_s] and hero.y < HEIGHT - hero.height:
         hero.y += walk_speed
-        walk_index += 1
+        if frame_count % 10 == 0:
+            walk_index += 1
         if walk_index >= len(hero_walk_list):
             walk_index = 0
 
@@ -360,9 +273,6 @@ def handle_movement(keys_pressed, hero):
         WIN.blit(hero_walk, (x, y))
     else:
         WIN.blit(pygame.transform.flip(hero_walk, True, False), (x, y))
-
-    if walk_index == 6 or walk_index == 31:
-        footstep_sound.play()
 
 
 def blit_text(keys_pressed, message, position: tuple):
@@ -451,7 +361,7 @@ def entrance(keys_pressed, hero):
     if (keys_pressed[pygame.K_a] or keys_pressed[pygame.K_w] or keys_pressed[pygame.K_s] or keys_pressed[pygame.K_d]) and text_skipped and small_text_skipped:
         handle_movement(keys_pressed, HERO)
     elif text_skipped:
-        handle_idle_hero(HERO, HERO_IDLE_LIST)
+        handle_idle_hero(HERO)
     blit_text(keys_pressed, text.intro(), (0, 0))
 
     if hero.x < 20 and HEIGHT * 0.6 - hero.height < hero.y < HEIGHT * 0.9 - hero.height:
@@ -523,8 +433,8 @@ def second_puzzle(keys_pressed, arrow, hero):
         HERO.x, HERO.y = (100, HEIGHT // 4 * 3 - HERO_HEIGHT)
         WIN.blit(BG, (0, 0))
         blit_tooltip(text.second_puzzle_text_small())
-        handle_idle_hero(HERO, HERO_IDLE_LIST)
-        handle_idle_sblade(SBLADE, SBLADE_IDLE_LIST)
+        handle_idle_hero(HERO)
+        handle_idle_sblade(SBLADE)
         WIN.blit(tab, tab1)
         WIN.blit(tab, tab2)
         WIN.blit(tab, tab3)
@@ -545,9 +455,9 @@ def second_puzzle(keys_pressed, arrow, hero):
     if text_skipped and second_puzzle_won:
         WIN.blit(BG, (0, 0))
         if (keys_pressed[pygame.K_a] or keys_pressed[pygame.K_w] or keys_pressed[pygame.K_s] or keys_pressed[pygame.K_d]) and small_text_skipped:
-            handle_movement(keys_pressed, HERO)
+            handle_movement(keys_pressed, hero)
         else:
-            handle_idle_hero(HERO, HERO_IDLE_LIST)
+            handle_idle_hero(HERO)
 
         if hero.x < 20 and HEIGHT * 0.6 - hero.height < hero.y < HEIGHT * 0.9 - hero.height:
             blit_interact()
@@ -614,7 +524,7 @@ def third_puzzle_room(keys_pressed, hero, arrow):
         fire_lit = True
         handle_movement(keys_pressed, hero)
     elif text_skipped:
-        handle_idle_hero(hero, HERO_IDLE_LIST)
+        handle_idle_hero(hero)
     if fire_lit:
         handle_idle_fire()
 
@@ -680,6 +590,7 @@ def death(keys_pressed):
 
 
 def main():
+    global frame_count
     global text_skipped
     arrow1 = pygame.Rect(arrow_start_pos_first_puzzle[0], arrow_start_pos_first_puzzle[1], ARROW_WIDTH, ARROW_HEIGHT)
     arrow2 = pygame.Rect(arrow_start_pos_second_puzzle[0], arrow_start_pos_second_puzzle[1], ARROW_WIDTH, ARROW_HEIGHT)
@@ -706,6 +617,9 @@ def main():
             blit_text(keys_pressed, text.meeting(), (0, 0))
             if text_skipped:
                 combat.combat()
+        if frame_count >= 10000:
+            frame_count = 0
+        frame_count += 1
         pygame.display.update()
 
 
