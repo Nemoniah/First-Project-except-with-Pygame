@@ -10,6 +10,10 @@ WIDTH, HEIGHT = 1280, 720
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 SMALL_TEXT_POS = (0, HEIGHT*0.8)
 pygame.display.set_caption("Itsy Bitsy Tiny Game except with Pygame")
+top_left = (0, 0)
+interact_edge_distance = 20
+interact_bottom_distance = HEIGHT * 0.9
+interact_top_distance = HEIGHT * 0.6
 
 # text and colors
 TEXT_FONT = pygame.font.SysFont('comicsans', 25)
@@ -17,6 +21,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 clock = pygame.time.Clock()
+movement_keys = [pygame.K_a, pygame.K_w, pygame.K_s, pygame.K_d]
 
 # a gazillion variables for tracking states
 walk_index = 0
@@ -53,7 +58,9 @@ TABLE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'Backgro
 # actors
 HERO_WIDTH = 128
 HERO_HEIGHT = 128
-HERO = pygame.Rect(100, HEIGHT // 4 * 3 - HERO_HEIGHT, HERO_WIDTH, HERO_HEIGHT)
+HERO_START_X = 100
+HERO_START_Y = HEIGHT // 4 * 3 - HERO_HEIGHT
+HERO = pygame.Rect(HERO_START_X, HERO_START_Y, HERO_WIDTH, HERO_HEIGHT)
 HERO_IDLE_LIST = [pygame.image.load(os.path.join('Assets', 'Lavender', 'idle1.png')),
                   pygame.image.load(os.path.join('Assets', 'Lavender', 'idle2.png')),
                   pygame.image.load(os.path.join('Assets', 'Lavender', 'idle3.png')),
@@ -352,26 +359,26 @@ def arrow_movement(keys_pressed, arrow, positions: list):
             arrow.x, arrow.y = positions[positions.index((arrow.x, arrow.y))-1]
 
 
-def entrance(keys_pressed, hero):
+def entrance(keys_pressed, movement_keys_pressed, hero):
     global section_index
     global small_text_skipped
     global text_skipped
-    WIN.blit(BG, (0, 0))
+    WIN.blit(BG, top_left)
 
-    if (keys_pressed[pygame.K_a] or keys_pressed[pygame.K_w] or keys_pressed[pygame.K_s] or keys_pressed[pygame.K_d]) and text_skipped and small_text_skipped:
+    if movement_keys_pressed and text_skipped and small_text_skipped:
         handle_movement(keys_pressed, HERO)
     elif text_skipped:
         handle_idle_hero(HERO)
-    blit_text(keys_pressed, text.intro(), (0, 0))
+    blit_text(keys_pressed, text.intro(), top_left)
 
-    if hero.x < 20 and HEIGHT * 0.6 - hero.height < hero.y < HEIGHT * 0.9 - hero.height:
+    if hero.x < interact_edge_distance and interact_top_distance - hero.height < hero.y < interact_bottom_distance - hero.height:
         blit_interact()
         if keys_pressed[pygame.K_e]:
             small_text_skipped = False
         if not small_text_skipped:
             blit_small_text(keys_pressed, text.intro_stalling())
 
-    if hero.x + hero.width > WIDTH - 20 and HEIGHT * 0.6 - hero.height < hero.y < HEIGHT * 0.9 - hero.height:
+    if hero.x + hero.width > WIDTH - interact_edge_distance and interact_top_distance - hero.height < hero.y < interact_bottom_distance - hero.height:
         blit_interact()
         if keys_pressed[pygame.K_e]:
             small_text_skipped = False
@@ -386,13 +393,14 @@ def first_puzzle(keys_pressed, arrow):
     global death_screen_index
     global text_skipped
     global section_index
-    arrow_pos_2 = 676, 500
-    arrow_pos_3 = 694, 500
+    arrow_pos_y = 500
+    arrow_pos_2 = 676, arrow_pos_y
+    arrow_pos_3 = 694, arrow_pos_y
     positions = [arrow_start_pos_first_puzzle, arrow_pos_2, arrow_pos_3]
-    blit_text(keys_pressed, text.first_puzzle_text(), (0, 0))
+    blit_text(keys_pressed, text.first_puzzle_text(), top_left)
 
     if text_skipped:
-        WIN.blit(BG, (0, 0))
+        WIN.blit(BG, top_left)
         WIN.blit(DOOR, (WIDTH//2 - DOOR.get_width()//2, 0))
         blit_tooltip(text.first_puzzle_text_small())
         arrow_movement(keys_pressed, arrow, positions)
@@ -409,7 +417,7 @@ def first_puzzle(keys_pressed, arrow):
                 death_screen_index = 2
 
 
-def second_puzzle(keys_pressed, arrow, hero):
+def second_puzzle(keys_pressed, movement_keys_pressed, arrow, hero):
     global small_text_skipped
     global text_skipped
     global section_index
@@ -417,30 +425,34 @@ def second_puzzle(keys_pressed, arrow, hero):
     global second_puzzle_won
     tab_pos_height = 100
     tab = pygame.transform.scale(TAB_IMAGE, (150, 50))
-    tab1 = (WIDTH//4-tab.get_width()//2, tab_pos_height)
-    tab2 = (WIDTH//2-tab.get_width()//2, tab_pos_height)
-    tab3 = (WIDTH*0.75-tab.get_width()//2, tab_pos_height)
+    half_tab_width = tab.get_width()//2
+    half_tab_height = tab.get_height()//2
+    half_arrow_width = arrow.width//2
+    arrow_height_reduced = arrow.height - 10
+    tab1 = (WIDTH//4 - half_tab_width, tab_pos_height)
+    tab2 = (WIDTH//2 - half_tab_width, tab_pos_height)
+    tab3 = (WIDTH*0.75 - half_tab_width, tab_pos_height)
     name1 = TEXT_FONT.render('Kolbert', 1, BLACK)
     name2 = TEXT_FONT.render('Wolfgang', 1, BLACK)
     name3 = TEXT_FONT.render('Chris', 1, BLACK)
-    arrow_pos2 = tab2[0]+tab.get_width()//2-arrow.width//2, tab2[1]-arrow.height-10
-    arrow_pos3 = tab3[0]+tab.get_width()//2-arrow.width//2, tab3[1]-arrow.height-10
+    arrow_pos2 = tab2[0] + half_tab_width - half_arrow_width, tab2[1] - arrow_height_reduced
+    arrow_pos3 = tab3[0] + half_tab_width - half_arrow_width, tab3[1] - arrow_height_reduced
     positions = [arrow_start_pos_second_puzzle, arrow_pos2, arrow_pos3]
 
-    blit_text(keys_pressed, text.second_puzzle_text(), (0, 0))
+    blit_text(keys_pressed, text.second_puzzle_text(), top_left)
 
     if text_skipped and not second_puzzle_won:
-        HERO.x, HERO.y = (100, HEIGHT // 4 * 3 - HERO_HEIGHT)
-        WIN.blit(BG, (0, 0))
+        HERO.x, HERO.y = (HERO_START_X, HERO_START_Y)
+        WIN.blit(BG, top_left)
         blit_tooltip(text.second_puzzle_text_small())
         handle_idle_hero(HERO)
         handle_idle_sblade(SBLADE)
         WIN.blit(tab, tab1)
         WIN.blit(tab, tab2)
         WIN.blit(tab, tab3)
-        WIN.blit(name1, (tab1[0]+tab.get_width()//2-name1.get_width()//2, tab1[1]+tab.get_height()//2-name1.get_height()//2))
-        WIN.blit(name2, (tab2[0]+tab.get_width()//2-name2.get_width()//2, tab2[1]+tab.get_height()//2-name2.get_height()//2))
-        WIN.blit(name3, (tab3[0]+tab.get_width()//2-name3.get_width()//2, tab1[1]+tab.get_height()//2-name3.get_height()//2))
+        WIN.blit(name1, (tab1[0] + half_tab_width - name1.get_width()//2, tab1[1] + half_tab_height - name1.get_height()//2))
+        WIN.blit(name2, (tab2[0] + half_tab_width - name2.get_width()//2, tab2[1] + half_tab_height - name2.get_height()//2))
+        WIN.blit(name3, (tab3[0] + half_tab_width - name3.get_width()//2, tab1[1] + half_tab_height - name3.get_height()//2))
         WIN.blit(ARROW_IMAGE, (arrow.x, arrow.y))
 
         arrow_movement(keys_pressed, arrow, positions)
@@ -453,26 +465,26 @@ def second_puzzle(keys_pressed, arrow, hero):
                 death_screen_index = 3
 
     if text_skipped and second_puzzle_won:
-        WIN.blit(BG, (0, 0))
-        if (keys_pressed[pygame.K_a] or keys_pressed[pygame.K_w] or keys_pressed[pygame.K_s] or keys_pressed[pygame.K_d]) and small_text_skipped:
+        WIN.blit(BG, top_left)
+        if movement_keys_pressed and small_text_skipped:
             handle_movement(keys_pressed, hero)
         else:
             handle_idle_hero(HERO)
 
-        if hero.x < 20 and HEIGHT * 0.6 - hero.height < hero.y < HEIGHT * 0.9 - hero.height:
+        if hero.x < interact_edge_distance and interact_top_distance - hero.height < hero.y < interact_bottom_distance - hero.height:
             blit_interact()
             if keys_pressed[pygame.K_e]:
                 small_text_skipped = False
             if not small_text_skipped:
                 blit_small_text(keys_pressed, text.second_puzzle_stalling())
-        if hero.x + hero.width > WIDTH - 20 and HEIGHT * 0.6 - hero.height < hero.y < HEIGHT * 0.9 - hero.height:
+        if hero.x + hero.width > WIDTH - interact_edge_distance and interact_top_distance - hero.height < hero.y < interact_bottom_distance - hero.height:
             blit_interact()
             if keys_pressed[pygame.K_e]:
                 small_text_skipped = False
             if not small_text_skipped:
                 blit_small_text(keys_pressed, text.second_puzzle_leave())
                 if keys_pressed[pygame.K_SPACE]:
-                    HERO.x, HERO.y = (100, HEIGHT // 4 * 3 - HERO_HEIGHT)
+                    HERO.x, HERO.y = (HERO_START_X, HERO_START_Y)
 
 
 def third_puzzle(keys_pressed, arrow):
@@ -488,7 +500,7 @@ def third_puzzle(keys_pressed, arrow):
     arrow_pos7 = 737, 440
     positions = [arrow_start_pos_third_puzzle, arrow_pos2, arrow_pos3, arrow_pos4, arrow_pos5, arrow_pos6, arrow_pos7]
 
-    WIN.blit(POTIONS, (0, 0))
+    WIN.blit(POTIONS, top_left)
     WIN.blit(ARROW_IMAGE, (arrow.x, arrow.y))
     blit_tooltip(text.third_puzzle_small_text())
 
@@ -511,16 +523,20 @@ def third_puzzle(keys_pressed, arrow):
         third_puzzle_init = False
 
 
-def third_puzzle_room(keys_pressed, hero, arrow):
+def third_puzzle_room(keys_pressed, movement_keys_pressed, hero, arrow):
     global section_index
     global death_screen_index
     global third_puzzle_init
     global text_skipped
     global small_text_skipped
     global fire_lit
-    WIN.blit(BG, (0, 0))
-    WIN.blit(TABLE, (WIDTH//2-TABLE.get_width()//2, HEIGHT*0.55))
-    if (keys_pressed[pygame.K_a] or keys_pressed[pygame.K_d] or keys_pressed[pygame.K_w] or keys_pressed[pygame.K_s]) and text_skipped and small_text_skipped and not third_puzzle_init:
+    half_table_width = TABLE.get_width()//2
+    half_table_height = TABLE.get_height()//2
+    table_x = WIDTH//2 - half_table_width
+    table_y = HEIGHT * 0.55
+    WIN.blit(BG, top_left)
+    WIN.blit(TABLE, (table_x, table_y))
+    if movement_keys_pressed and text_skipped and small_text_skipped and not third_puzzle_init:
         fire_lit = True
         handle_movement(keys_pressed, hero)
     elif text_skipped:
@@ -528,7 +544,7 @@ def third_puzzle_room(keys_pressed, hero, arrow):
     if fire_lit:
         handle_idle_fire()
 
-    if hero.x < 20 and HEIGHT * 0.6 - hero.height < hero.y < HEIGHT * 0.9 - hero.height:
+    if hero.x < interact_edge_distance and interact_top_distance - hero.height < hero.y < interact_bottom_distance - hero.height:
         blit_interact()
         if keys_pressed[pygame.K_e]:
             small_text_skipped = False
@@ -539,7 +555,7 @@ def third_puzzle_room(keys_pressed, hero, arrow):
         if potion_drunk == 0 and not small_text_skipped:
             blit_small_text(keys_pressed, "That looks too deadly to enter.")
 
-    if hero.x + hero.width > WIDTH - 20 and HEIGHT * 0.6 - hero.height < hero.y < HEIGHT * 0.9 - hero.height:
+    if hero.x + hero.width > WIDTH - interact_edge_distance and interact_top_distance - hero.height < hero.y < interact_bottom_distance - hero.height:
         blit_interact()
         if keys_pressed[pygame.K_e]:
             small_text_skipped = False
@@ -551,7 +567,7 @@ def third_puzzle_room(keys_pressed, hero, arrow):
         if not small_text_skipped and potion_drunk == 0:
             blit_small_text(keys_pressed, "That looks too deadly to enter.")
 
-    if WIDTH//2-TABLE.get_width()//2+64 > hero.x > WIDTH//2-TABLE.get_width()//2-64 and HEIGHT*0.55+64 > hero.y > HEIGHT*0.55-64 and not third_puzzle_won and not third_puzzle_init:
+    if table_x+half_table_width > hero.x > table_x-half_table_width and table_y+half_table_height > hero.y > table_y-half_table_height and not third_puzzle_won and not third_puzzle_init:
         blit_interact()
         if keys_pressed[pygame.K_e]:
             text_skipped = False
@@ -565,25 +581,25 @@ def third_puzzle_room(keys_pressed, hero, arrow):
 
 def death(keys_pressed):
     if death_screen_index == 1:
-        WIN.blit(BG_LIGHTNING, (0, 0))
+        WIN.blit(BG_LIGHTNING, top_left)
         blit_small_text(keys_pressed, "A bolt of lightning shoots off the ceiling and murders you to death.")
     if death_screen_index == 2:
-        WIN.blit(BG_FALLING, (0, 0))
+        WIN.blit(BG_FALLING, top_left)
         blit_small_text(keys_pressed, "The floor under your feet disappears and you fall to your death.")
     if death_screen_index == 3:
-        WIN.blit(BG_CRUSHED, (0, 0))
+        WIN.blit(BG_CRUSHED, top_left)
         blit_small_text(keys_pressed, '"Wrong!" the spellblade spectre laughs. Then, a massive stone slab falls from the ceiling an crushes you.')
     if death_screen_index == 4:
-        WIN.blit(BG_POISONED, (0, 0))
+        WIN.blit(BG_POISONED, top_left)
         blit_small_text(keys_pressed, "You drink a potion. Well, more like a potion with an s and the third and fourth letters swapped.")
     if death_screen_index == 5:
-        WIN.blit(BG_STUCK, (0, 0))
+        WIN.blit(BG_STUCK, top_left)
         blit_small_text(keys_pressed, "As you pass through the flames, the door behind you slams shut, cutting you off from the Spellblade.")
     if death_screen_index == 6:
-        WIN.blit(BG_BURNT, (0, 0))
+        WIN.blit(BG_BURNT, top_left)
         blit_small_text(keys_pressed, "The look of a pile of ash does not suit you.")
     if death_screen_index == 7:
-        WIN.blit(BG_KILLED, (0, 0))
+        WIN.blit(BG_KILLED, top_left)
         blit_small_text(keys_pressed, "You'd hear the spellblade laugh maniacally but that's kinda hard to do when you're dead.")
     if keys_pressed[pygame.K_SPACE]:
         quit()
@@ -603,16 +619,17 @@ def main():
             if event.type == pygame.QUIT:
                 exit()
         keys_pressed = pygame.key.get_pressed()
+        movement_key_pressed = keys_pressed[pygame.K_a] or keys_pressed[pygame.K_w] or keys_pressed[pygame.K_s] or keys_pressed[pygame.K_d]
         if death_screen_index != 0:
             death(keys_pressed)
         elif section_index == 0:
-            entrance(keys_pressed, HERO)
+            entrance(keys_pressed, movement_key_pressed, HERO)
         elif section_index == 1:
             first_puzzle(keys_pressed, arrow1)
         elif section_index == 2:
-            second_puzzle(keys_pressed, arrow2, HERO)
+            second_puzzle(keys_pressed, movement_key_pressed, arrow2, HERO)
         elif section_index == 3:
-            third_puzzle_room(keys_pressed, HERO, arrow3)
+            third_puzzle_room(keys_pressed, movement_key_pressed, HERO, arrow3)
         elif section_index == 4:
             blit_text(keys_pressed, text.meeting(), (0, 0))
             if text_skipped:
@@ -625,5 +642,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 

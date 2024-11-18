@@ -86,12 +86,16 @@ sblade_start_pos = 800 + sblade_rect.width
 # arrow positions and tabs
 ARROW_WIDTH = 32
 ARROW_HEIGHT = 32
+TAB_WIDTH = 120
+TAB_HEIGHT = 40
 ARROW_IMAGE = pygame.transform.rotate(pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'UI', 'arrow.png')), (ARROW_WIDTH, ARROW_HEIGHT)), 270)
-TAB_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'UI', 'tab.png')), (120, 40))
-pos4 = (10+TAB_IMAGE.get_width()+5, HEIGHT*0.8-TAB_IMAGE.get_height()+5)
-pos3 = (10+TAB_IMAGE.get_width()+5, HEIGHT*0.8-TAB_IMAGE.get_height()*2+5)
-pos2 = (10+TAB_IMAGE.get_width()+5, HEIGHT*0.8-TAB_IMAGE.get_height()*3+5)
-pos1 = (10+TAB_IMAGE.get_width()+5, HEIGHT*0.8-TAB_IMAGE.get_height()*4+5)
+TAB_IMAGE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'UI', 'tab.png')), (TAB_WIDTH, TAB_HEIGHT))
+tab_pos_x = 15 + TAB_IMAGE.get_width()
+pos_y_constant = HEIGHT * 0.8 + 5
+pos4 = (tab_pos_x, pos_y_constant - TAB_IMAGE.get_height())
+pos3 = (tab_pos_x, pos_y_constant - TAB_IMAGE.get_height()*2)
+pos2 = (tab_pos_x, pos_y_constant - TAB_IMAGE.get_height()*3)
+pos1 = (tab_pos_x, pos_y_constant - TAB_IMAGE.get_height()*4)
 positions = [pos1, pos2, pos3, pos4]
 arrow_rect = pygame.Rect(pos1[0], pos1[1], ARROW_WIDTH, ARROW_HEIGHT)
 
@@ -212,21 +216,27 @@ SBLADE_INTERRUPT_LIST = [pygame.image.load(os.path.join('Assets', 'Spellblade', 
 
 
 def healthbars():
-    WIN.blit(HEALTHBAR, (lav_rect.x, lav_rect.y-10))
-    for i in range(lavender.hp//(lavender.hp_max//10)):
-        WIN.blit(HEALTHBAR_SEGMENT, (lav_rect.x+4+12*i, lav_rect.y-10))
-    WIN.blit(HEALTHBAR, (sblade_rect.x, sblade_rect.y-10))
-    for i in range(sblade.hp//(sblade.hp_max//10)):
-        WIN.blit(HEALTHBAR_SEGMENT, (sblade_rect.x+4+12*i, sblade_rect.y-10))
+    divider_width = 4
+    segment_width = 12
+    segment_count = 10
+    y_offset = 10
+    WIN.blit(HEALTHBAR, (lav_rect.x, lav_rect.y - y_offset))
+    for i in range(lavender.hp // (lavender.hp_max // segment_count)):
+        WIN.blit(HEALTHBAR_SEGMENT, (lav_rect.x + divider_width + segment_width * i, lav_rect.y - y_offset))
+    WIN.blit(HEALTHBAR, (sblade_rect.x, sblade_rect.y - y_offset))
+    for i in range(sblade.hp // (sblade.hp_max // segment_count)):
+        WIN.blit(HEALTHBAR_SEGMENT, (sblade_rect.x + divider_width + segment_width * i, sblade_rect.y - y_offset))
 
 
 def status_messages():
     status_lavender_render = TEXT_FONT.render(lavender.status_message, 1, BLACK)
     status_sblade_render = TEXT_FONT.render(sblade.status_message, 1, BLACK)
     satus_third_render = TEXT_FONT.render(third_status_message, 1, BLACK)
-    WIN.blit(status_lavender_render, (10, HEIGHT*0.8))
-    WIN.blit(status_sblade_render, (10, HEIGHT*0.8+status_lavender_render.get_height()))
-    WIN.blit(satus_third_render, (10, HEIGHT*0.8+status_lavender_render.get_height()*2))
+    status_x = 10
+    status_y = HEIGHT * 0.8
+    WIN.blit(status_lavender_render, (status_x, status_y))
+    WIN.blit(status_sblade_render, (status_x, status_y + status_lavender_render.get_height()))
+    WIN.blit(satus_third_render, (status_x, status_y + status_lavender_render.get_height()*2))
 
 
 def lavender_idle_animations():
@@ -428,6 +438,11 @@ def spell(actor, target):
     global spell_explosion_playing
     global action_generated
     global virtual_keypress
+    lav_spell_end_x = 880
+    lav_spell_start_x = 265 + CHAR_WIDTH
+    sblade_spell_end_x = 350
+    sblade_spell_start_x = 1020 - CHAR_WIDTH-SPELL_WIDTH
+    spell_speed = 10
 
     if actor is lavender:
         animation = LAVENDER_SPELL_LIST
@@ -445,8 +460,8 @@ def spell(actor, target):
                 else:
                     WIN.blit(LAVENDER_MAGIC_MISSILE_LIST[spell_anim_index], (lav_spell_rect.x, lav_spell_rect.y))
                     spell_anim_index += 1
-                if lav_spell_rect.x < 880:
-                    lav_spell_rect.x += 10
+                if lav_spell_rect.x < lav_spell_end_x:
+                    lav_spell_rect.x += spell_speed
             if actor is sblade:
                 if spell_anim_index >= len(SBLADE_MAGIC_MISSLE1_LIST):
                     WIN.blit(SBLADE_MAGIC_MISSLE1_LIST[spell_anim_index-1], (sblade_spell_rect.x, sblade_spell_rect.y))
@@ -454,8 +469,8 @@ def spell(actor, target):
                     WIN.blit(SBLADE_MAGIC_MISSLE1_LIST[spell_anim_index], (sblade_spell_rect.x, sblade_spell_rect.y))
                     if frame_count % 5 == 0:
                         spell_anim_index += 1
-                if sblade_spell_rect.x > 350:
-                    sblade_spell_rect.x -= 10
+                if sblade_spell_rect.x > sblade_spell_end_x:
+                    sblade_spell_rect.x -= spell_speed
         elif target.is_interrupting:
             target.is_interrupting = False
             target.status_message = f"{target.name} interrupted {actor.name}'s spell."
@@ -466,7 +481,7 @@ def spell(actor, target):
             action_generated = False
             player_turn = not player_turn
 
-    if lav_spell_rect.x >= 880:
+    if lav_spell_rect.x >= lav_spell_end_x:
         if target.is_parrying:
             sblade.status_message = f"{actor.name}'s spell causes {target.name} to drop his guard."
         target.is_parrying = False
@@ -475,13 +490,13 @@ def spell(actor, target):
         target.idle_index = 0
         actor.status_message = f"{actor.name} deals {actor.spell_damage} damage to {target.name}."
         actor.spell_fired = False
-        lav_spell_rect.x = 300+CHAR_WIDTH-35
+        lav_spell_rect.x = lav_spell_start_x
         spell_anim_index = 0
         actor.turn_count += 1
         action_generated = False
         keys_locked = False
         player_turn = not player_turn
-    if sblade_spell_rect.x <= 350:
+    if sblade_spell_rect.x <= sblade_spell_end_x:
         if target.is_parrying:
             lavender.status_message = f"{actor.name}'s spell causes {target.name} to drop his guard."
         target.is_parrying = False
@@ -491,7 +506,7 @@ def spell(actor, target):
         actor.status_message = f"{actor.name} deals {actor.spell_damage} damage to {target.name}."
         spell_explosion_playing = True
         actor.spell_fired = False
-        sblade_spell_rect.x = 980-CHAR_WIDTH-SPELL_WIDTH+40
+        sblade_spell_rect.x = sblade_spell_start_x
         spell_anim_index = 0
         actor.turn_count += 1
         keys_locked = False
@@ -596,6 +611,14 @@ def fireball_explosion():
                 spell_anim_index += 1
 
 
+def reset_states_sblade_defence():
+    sblade.idle_index = 0
+    sblade.is_interrupting = False
+    sblade.is_preparing_attack = False
+    sblade.is_preparing_spell = False
+    sblade.is_idle = True
+
+
 def combat():
     global spell_explosion_playing
     global spell_anim_index
@@ -636,20 +659,12 @@ def combat():
                 action = random.randint(1, 2)
                 action_generated = True
             if action == 1:
-                sblade.idle_index = 0
-                sblade.is_interrupting = False
-                sblade.is_preparing_attack = False
-                sblade.is_preparing_spell = False
-                sblade.is_idle = True
+                reset_states_sblade_defence()
                 third_status_message = f"{sblade.name} looks scared and is taking a defensive posture."
                 sblade.is_parrying = True
                 player_turn = not player_turn
             elif action == 2:
-                sblade.idle_index = 0
-                sblade.is_parrying = False
-                sblade.is_preparing_attack = False
-                sblade.is_preparing_spell = False
-                sblade.is_idle = True
+                reset_states_sblade_defence()
                 third_status_message = f"{sblade.name} looks scared and is preparing a counterspell"
                 sblade.is_interrupting = True
                 player_turn = not player_turn
